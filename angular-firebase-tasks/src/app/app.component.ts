@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable } from '@firebase/util';
+import { Observable } from 'rxjs/Observable';
 import { Task } from './models/task.model';
 
 @Component({
