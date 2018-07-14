@@ -1,10 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from '@firebase/util';
+import { Task } from './models/task.model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'course of angular and firebase';
+export class AppComponent implements OnInit {
+
+  tasks$: Observable<Task[]>;
+
+  constructor(
+    private db: AngularFirestore
+  ) {}
+
+  ngOnInit(): void {
+    this.tasks$ = this.db.collection<Task>('/tasks').valueChanges(); // serve pra paginar se passar o segundo paramentro
+  }
 }
